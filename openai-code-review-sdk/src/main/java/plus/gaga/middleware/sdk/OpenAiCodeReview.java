@@ -21,8 +21,9 @@ public class OpenAiCodeReview {
 
         StringBuilder diffCode = new StringBuilder();
         while ((line = reader.readLine()) != null) {
-            diffCode.append(line);
+            diffCode.append(line).append("\n"); // 添加换行符
         }
+
 
         int exitCode = process.waitFor();
         System.out.println("diff_show");
