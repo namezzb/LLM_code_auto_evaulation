@@ -28,7 +28,8 @@ jobs:
         run: mkdir -p ./libs
 
       - name: Download openai-code-review-sdk JAR
-        run: wget -O ./libs/openai-code-review-sdk-1.0.jar https://github.com/namezzb/LLM_code_auto_evaulate_log/releases/download/v1.0/LLM-code-review-sdk-1.0.jar
+        run: wget -O ./libs/openai-code-review-sdk-2.0.jar https://github.com/namezzb/LLM_code_auto_evaulate_log/releases/download/v2.0/LLM-code-review-sdk-2.0.jar
+
 
       - name: Get repository name
         id: repo-name
@@ -54,7 +55,7 @@ jobs:
           echo "Commit message is ${{ env.COMMIT_MESSAGE }}"      
 
       - name: Run Code Review
-        run: java -jar ./libs/openai-code-review-sdk-1.0.jar
+        run: java -jar ./libs/openai-code-review-sdk-2.0.jar
         env:
           # Github 配置；GITHUB_REVIEW_LOG_URI「https://github.com/xfg-studio-project/openai-code-review-log」、GITHUB_TOKEN「https://github.com/settings/tokens」
           GITHUB_REVIEW_LOG_URI: ${{ secrets.CODE_REVIEW_LOG_URI }}
