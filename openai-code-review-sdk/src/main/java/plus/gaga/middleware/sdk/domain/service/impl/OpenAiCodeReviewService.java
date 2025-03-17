@@ -34,8 +34,17 @@ public class OpenAiCodeReviewService extends AbstractOpenAiCodeReviewService {
             private static final long serialVersionUID = -7988151926241837899L;
 
             {
-                add(new ChatCompletionRequestDTO.Prompt("user", "你是一个高级编程架构师，精通各类场景方案、架构设计和编程语言请，请您根据git diff记录，对代码做出评审。代码如下:"));
-                add(new ChatCompletionRequestDTO.Prompt("user", diffCode));
+                add(new ChatCompletionRequestDTO.Prompt("system",
+                        "你是一位经验丰富的高级编程架构师，精通各类编程语言、设计模式和架构原则。" +
+                                "请对提供的Git差异代码进行全面、专业的代码评审，重点关注：" +
+                                "1. 代码质量与可维护性问题" +
+                                "2. 潜在的性能瓶颈" +
+                                "3. 安全漏洞" +
+                                "4. 设计模式应用是否合理" +
+                                "5. 是否符合最佳实践" +
+                                "6. 提出明确、可操作的改进建议"));
+                add(new ChatCompletionRequestDTO.Prompt("user",
+                        "请对以下Git Diff代码进行评审，提供具体、有建设性的改进建议：\n\n" + diffCode));
             }
         });
 
